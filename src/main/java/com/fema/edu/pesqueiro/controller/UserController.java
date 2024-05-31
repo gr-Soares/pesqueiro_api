@@ -1,6 +1,7 @@
 package com.fema.edu.pesqueiro.controller;
 
 import com.fema.edu.pesqueiro.dto.PasswordUpdateDTO;
+import com.fema.edu.pesqueiro.dto.UserInsertDTO;
 import com.fema.edu.pesqueiro.dto.UserUpdateDTO;
 import com.fema.edu.pesqueiro.infra.model.User;
 import com.fema.edu.pesqueiro.service.UserService;
@@ -32,9 +33,8 @@ public class UserController {
         return service.findById(uuid);
     }
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping
-    public ResponseEntity<?> insert(@RequestBody User user) {
+    public ResponseEntity<?> insert(@RequestBody UserInsertDTO user) {
         try {
             service.insert(user);
             return ResponseEntity.status(HttpStatus.OK).build();

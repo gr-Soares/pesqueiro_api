@@ -1,6 +1,7 @@
 package com.fema.edu.pesqueiro.service;
 
 import com.fema.edu.pesqueiro.dto.PasswordUpdateDTO;
+import com.fema.edu.pesqueiro.dto.UserInsertDTO;
 import com.fema.edu.pesqueiro.dto.UserUpdateDTO;
 import com.fema.edu.pesqueiro.infra.model.User;
 import com.fema.edu.pesqueiro.infra.repository.UserRepository;
@@ -22,15 +23,23 @@ public class UserService {
     UserRepository repository;
 
 
-    public void insert(User user) {
-        final String username = user.getUsername();
+    public void insert(UserInsertDTO newUser) {
+        final String username = newUser.getUsername();
 
         User result = findByUsername(username);
-        if (result != null) {
+        if (result == null) {
+            User user = new User();
+
             user.setId(null);
             user.setActive(false);
+            user.setUsername(newUser.getUsername());
+            user.setEmail(newUser.getEmail());
+            user.setNome(newUser.getNome());
+            user.setCelular(newUser.getCelular());
+            user.setSalario(newUser.getSalario());
+            user.setCpf(newUser.getCpf());
 
-            String encryptedPass = securityConfig.passwordEncoder().encode(user.getPassword());
+            String encryptedPass = securityConfig.passwordEncoder().encode(newUser.getPassword());
             user.setPassword(encryptedPass);
 
             repository.save(user);

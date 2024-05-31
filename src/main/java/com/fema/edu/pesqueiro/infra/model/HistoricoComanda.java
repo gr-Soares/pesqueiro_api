@@ -1,9 +1,12 @@
 package com.fema.edu.pesqueiro.infra.model;
 
+import com.fema.edu.pesqueiro.infra.enums.ComandaStatus;
+import com.fema.edu.pesqueiro.infra.enums.HistComandaStatus;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Entity(name = "historicoComanda")
 @Table(name = "historicoComanda")
@@ -15,9 +18,9 @@ import java.time.LocalDateTime;
 public class HistoricoComanda {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private int id;
-    private String status;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
+    private HistComandaStatus status;
     private float valor;
     private LocalDateTime entrada;
     private LocalDateTime saida;

@@ -17,25 +17,21 @@ public class ClienteController {
     @Autowired
     ClienteService service;
 
-    @PreAuthorize("hasRole('ROLE_USER')")
     @GetMapping
     public List<Cliente> findAll() {
         return service.findAll();
     }
 
-    @PreAuthorize("hasRole('ROLE_USER')")
     @GetMapping("/{id}")
     public Cliente findById(@PathVariable UUID id) {
         return service.findById(id);
     }
 
-    @PreAuthorize("hasRole('ROLE_USER')")
     @GetMapping("/cpf/{id}")
     public Cliente findByCpf(@PathVariable String id) {
         return service.findByCpf(id);
     }
 
-    @PreAuthorize("hasRole('ROLE_USER')")
     @PostMapping
     public ResponseEntity<?> insert(@RequestBody Cliente cliente) {
         try{
@@ -46,7 +42,6 @@ public class ClienteController {
         }
     }
 
-    @PreAuthorize("hasRole('ROLE_USER')")
     @PutMapping
     public ResponseEntity<?> update(@RequestBody Cliente cliente) {
         try{

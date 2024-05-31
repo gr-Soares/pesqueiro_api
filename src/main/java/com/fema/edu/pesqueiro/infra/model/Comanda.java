@@ -1,5 +1,6 @@
 package com.fema.edu.pesqueiro.infra.model;
 
+import com.fema.edu.pesqueiro.infra.enums.ComandaStatus;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -15,5 +16,7 @@ public class Comanda {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int id;
-    private String status;
+
+    @Enumerated(EnumType.STRING)
+    private ComandaStatus status;
 }

@@ -25,13 +25,15 @@ public class AuthController {
     TokenService tokenService;
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody LoginDTO data) {
+    public ResponseEntity<TokenDTO> login(@RequestBody LoginDTO data) {
 
         try {
             var authToken = new UsernamePasswordAuthenticationToken(data.getUsername(), data.getPassword());
             var auth = authenticationManager.authenticate(authToken);
 
-            String token = tokenService.generateToken((User) auth.getPrincipal());
+            String tkString = tokenService.generateToken((User) auth.getPrincipal());
+
+            TokenDTO token = new TokenDTO(tkString);
 
             return ResponseEntity.ok(token);
         } catch (Exception ex) {

@@ -1,8 +1,7 @@
 package com.fema.edu.pesqueiro.controller;
 
-
-import com.fema.edu.pesqueiro.infra.model.Fornecedor;
-import com.fema.edu.pesqueiro.service.FornecedorService;
+import com.fema.edu.pesqueiro.infra.model.Cardapio;
+import com.fema.edu.pesqueiro.service.CardapioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -12,25 +11,22 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/fornecedor")
-public class FornecedorController {
+@RequestMapping("/cardapio")
+public class CardapioController {
 
     @Autowired
-    FornecedorService service;
+    CardapioService service;
 
     @GetMapping
-    public List<Fornecedor> findAll() { return service.findAll(); }
+    public List<Cardapio> findAll() { return service.findAll(); }
 
     @GetMapping("/{id}")
-    public Fornecedor findById(@PathVariable UUID id) { return service.findById(id); }
-
-    @GetMapping("/cnpj/{cnpj}")
-    public Fornecedor findByCnpj(@PathVariable String cnpj) { return service.findByCnpj(cnpj); }
+    public Cardapio findById(@PathVariable UUID id) { return service.findById(id); }
 
     @PostMapping
-    public ResponseEntity<?> insert(@RequestBody Fornecedor fornecedor) {
+    public ResponseEntity<?> insert(@RequestBody Cardapio cardapio) {
         try{
-            service.insert(fornecedor);
+            service.insert(cardapio);
             return ResponseEntity.ok().build();
         }catch (Exception ex){
             return  ResponseEntity.badRequest().build();
@@ -38,9 +34,9 @@ public class FornecedorController {
     }
 
     @PutMapping
-    public ResponseEntity<?> update(@RequestBody Fornecedor fornecedor) {
+    public ResponseEntity<?> update(@RequestBody Cardapio cardapio) {
         try{
-            service.update(fornecedor);
+            service.update(cardapio);
             return ResponseEntity.ok().build();
         }catch (Exception ex){
             return  ResponseEntity.badRequest().build();

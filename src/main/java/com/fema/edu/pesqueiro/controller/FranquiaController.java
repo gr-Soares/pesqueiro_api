@@ -1,8 +1,8 @@
 package com.fema.edu.pesqueiro.controller;
 
 
-import com.fema.edu.pesqueiro.infra.model.Fornecedor;
-import com.fema.edu.pesqueiro.service.FornecedorService;
+import com.fema.edu.pesqueiro.infra.model.Franquia;
+import com.fema.edu.pesqueiro.service.FranquiaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -12,25 +12,25 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/fornecedor")
-public class FornecedorController {
+@RequestMapping("/franquia")
+public class FranquiaController {
 
     @Autowired
-    FornecedorService service;
+    FranquiaService service;
 
     @GetMapping
-    public List<Fornecedor> findAll() { return service.findAll(); }
+    public List<Franquia> findAll() { return service.findAll(); }
 
     @GetMapping("/{id}")
-    public Fornecedor findById(@PathVariable UUID id) { return service.findById(id); }
+    public Franquia findById(@PathVariable UUID id) { return service.findById(id); }
 
-    @GetMapping("/cnpj/{cnpj}")
-    public Fornecedor findByCnpj(@PathVariable String cnpj) { return service.findByCnpj(cnpj); }
+    @GetMapping("/nome/{nome}")
+    public Franquia findByNome(@PathVariable String nome) { return service.findByNome(nome); }
 
     @PostMapping
-    public ResponseEntity<?> insert(@RequestBody Fornecedor fornecedor) {
+    public ResponseEntity<?> insert(@RequestBody Franquia franquia) {
         try{
-            service.insert(fornecedor);
+            service.insert(franquia);
             return ResponseEntity.ok().build();
         }catch (Exception ex){
             return  ResponseEntity.badRequest().build();
@@ -38,9 +38,9 @@ public class FornecedorController {
     }
 
     @PutMapping
-    public ResponseEntity<?> update(@RequestBody Fornecedor fornecedor) {
+    public ResponseEntity<?> update(@RequestBody Franquia franquia) {
         try{
-            service.update(fornecedor);
+            service.update(franquia);
             return ResponseEntity.ok().build();
         }catch (Exception ex){
             return  ResponseEntity.badRequest().build();

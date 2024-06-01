@@ -19,7 +19,6 @@ public class Marca {
     private UUID id;
 
     private String nome;
-    private int fornecedor_m;
 
     @OneToOne
     private Produto produto;

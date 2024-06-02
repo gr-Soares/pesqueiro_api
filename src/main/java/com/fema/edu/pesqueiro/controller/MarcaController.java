@@ -31,7 +31,7 @@ public class MarcaController {
     @PostMapping
     public ResponseEntity<?> insert(@RequestBody Marca marca) {
         try {
-            service.inset(marca);
+            service.insert(marca);
             return ResponseEntity.ok().build();
         }catch (Exception ex){
             return ResponseEntity.badRequest().build();

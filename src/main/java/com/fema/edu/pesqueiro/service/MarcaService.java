@@ -1,5 +1,6 @@
 package com.fema.edu.pesqueiro.service;
 
+import com.fema.edu.pesqueiro.infra.model.Fornecedor;
 import com.fema.edu.pesqueiro.infra.model.Marca;
 import com.fema.edu.pesqueiro.infra.repository.MarcaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,9 @@ public class MarcaService {
     @Autowired
     MarcaRepository repository;
 
+    @Autowired
+    FornecedorService fornecedorService;
+
     public Marca findById(UUID id){
         Optional<Marca> result = repository.findById(id);
         return  result.orElse(null);
@@ -27,8 +31,7 @@ public class MarcaService {
 
     public List<Marca> findAll() { return repository.findAll(); }
 
-    public void inset(Marca marca){
-        marca.setId(null);
+    public void insert(Marca marca){
         repository.save(marca);
     }
 

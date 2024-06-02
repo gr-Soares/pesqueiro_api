@@ -1,6 +1,7 @@
 package com.fema.edu.pesqueiro.service;
 
 import com.fema.edu.pesqueiro.infra.model.Cliente;
+import com.fema.edu.pesqueiro.infra.model.ClienteComanda;
 import com.fema.edu.pesqueiro.infra.repository.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -44,5 +45,22 @@ public class ClienteService {
         if(cliente != null){
             repository.delete(cliente);
         }
+    }
+
+    public ClienteComanda findComandaById(UUID id) {
+
+        Cliente cliente = findById(id);
+
+        if(cliente == null){
+            throw new RuntimeException("Cliente inexistente!");
+        }
+
+        ClienteComanda comanda = cliente.getClienteComanda();
+
+        if(comanda == null){
+            throw new RuntimeException("Comanda inexistente!");
+        }
+
+        return comanda;
     }
 }

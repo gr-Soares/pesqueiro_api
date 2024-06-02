@@ -1,6 +1,7 @@
 package com.fema.edu.pesqueiro.controller;
 
 import com.fema.edu.pesqueiro.infra.model.Cliente;
+import com.fema.edu.pesqueiro.infra.model.ClienteComanda;
 import com.fema.edu.pesqueiro.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -30,6 +31,11 @@ public class ClienteController {
     @GetMapping("/cpf/{id}")
     public Cliente findByCpf(@PathVariable String id) {
         return service.findByCpf(id);
+    }
+
+    @GetMapping("/comanda/{id}")
+    public ClienteComanda findComandaById(@PathVariable String id) {
+        return service.findComandaById(UUID.fromString(id));
     }
 
     @PostMapping

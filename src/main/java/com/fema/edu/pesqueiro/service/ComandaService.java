@@ -55,6 +55,14 @@ public class ComandaService {
             throw new RuntimeException("Cliente inexistente!");
         }
 
+        ClienteComanda comandaAtual = cliente.getClienteComanda();
+
+        if(comandaAtual != null){
+            if(comandaAtual.getComanda().getStatus() == ComandaStatus.ABERTA){
+                throw new RuntimeException("Cliente ja consta com comanda!");
+            }
+        }
+
         if(disp.isEmpty()){
             cmn.setStatus(ComandaStatus.ABERTA);
         }else{
@@ -102,6 +110,10 @@ public class ComandaService {
 
             if(release){
                 cmn.setStatus(ComandaStatus.DISPONIVEL);
+
+                cliente.setClienteComanda(null);
+
+                clienteService.update(cliente);
 
                 HistoricoComanda hist = new HistoricoComanda();
 

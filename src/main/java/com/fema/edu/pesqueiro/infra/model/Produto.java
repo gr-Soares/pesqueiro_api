@@ -26,7 +26,7 @@ public class Produto {
     private Integer qtde;
     private Float valor_f;
 
-    @OneToOne
+    @ManyToOne
     private Marca marca;
 
 }

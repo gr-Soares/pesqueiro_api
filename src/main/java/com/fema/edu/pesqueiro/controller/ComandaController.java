@@ -31,10 +31,10 @@ public class ComandaController {
     }
 
     @PostMapping("/open/{id}")
-    public ResponseEntity<?> open(@PathVariable("id") UUID cliente_id){
+    public ResponseEntity<?> open(@PathVariable("id") String cliente_id){
         try{
             LocalDateTime entrada = LocalDateTime.now();
-            service.open(entrada, cliente_id);
+            service.open(entrada, UUID.fromString(cliente_id));
 
             return ResponseEntity.ok().build();
         }catch (Exception ex){

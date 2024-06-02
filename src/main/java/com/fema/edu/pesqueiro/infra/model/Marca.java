@@ -20,8 +20,7 @@ public class Marca {
 
     private String nome;
 
-    @OneToOne
-    private Produto produto;
-    @OneToOne
+    @ManyToOne
+    @JoinColumn(name = "fornecedor_id")
     private Fornecedor fornecedor;
 }

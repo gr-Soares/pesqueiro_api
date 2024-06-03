@@ -23,8 +23,8 @@ public class Consumo {
     private Float valor;
     private LocalDateTime date;
 
-    @OneToOne
+    @OneToMany
     private Comanda comanda;
-    @OneToOne
+    @OneToMany
     private Produto produto;
 }

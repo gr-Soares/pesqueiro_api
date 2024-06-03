@@ -1,5 +1,6 @@
 package com.fema.edu.pesqueiro.controller;
 
+import com.fema.edu.pesqueiro.dto.ConsumoDTO;
 import com.fema.edu.pesqueiro.infra.model.Consumo;
 import com.fema.edu.pesqueiro.service.ConsumoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,7 @@ public class ConsumoController {
     public Consumo findById(@PathVariable UUID id) { return service.findById(id); }
 
     @PostMapping
-    public ResponseEntity<?> insert(@RequestBody Consumo consumo) {
+    public ResponseEntity<?> insert(@RequestBody ConsumoDTO consumo) {
         try{
             service.insert(consumo);
             return ResponseEntity.ok().build();

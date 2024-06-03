@@ -2,9 +2,8 @@ package com.fema.edu.pesqueiro.infra.enums;
 
 public enum ProdutoTipo {
 
-    COMIDA("comida"),
-    BEBIDA("bebida"),
-    PEIXE("peixe");
+    COMPRA("compra"),
+    ALUGUEL("aluguel");
 
     private final String tipo;
 

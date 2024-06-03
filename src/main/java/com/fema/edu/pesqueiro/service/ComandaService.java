@@ -96,6 +96,15 @@ public class ComandaService {
         }
     }
 
+    public ClienteComanda updateGasto(float valor, ClienteComanda comanda){
+        float old = comanda.getGasto();
+        comanda.setGasto(old + valor);
+
+        repository.save(comanda);
+
+        return comanda;
+    }
+
     public void close(LocalDateTime saida, HistComandaStatus status, String nota, UUID cliente_id, boolean release){
         Cliente cliente = clienteService.findById(cliente_id);
 

@@ -35,4 +35,8 @@ public class ControlePeixeService {
             repository.delete(controlePeixe);
         }
     }
+
+    public List<ControlePeixe> findByTanque(UUID uuid) {
+        return repository.findByTanqueId(uuid);
+    }
 }

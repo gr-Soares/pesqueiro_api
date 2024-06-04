@@ -23,6 +23,12 @@ public class ControlePeixeController {
     @GetMapping("/{id}")
     public ControlePeixe findById(@PathVariable UUID id) { return service.findById(id); }
 
+    @GetMapping("/tanque/{id}")
+    public List<ControlePeixe> findByTanque(@PathVariable("id") String id){
+        UUID uuid = UUID.fromString(id);
+        return service.findByTanque(uuid);
+    }
+
     @PostMapping
     public ResponseEntity<?> insert(@RequestBody ControlePeixe controlePeixe) {
         try{

@@ -7,7 +7,11 @@ public enum PescadoCondicao {
 
     private final String condicao;
 
-    PescadoCondicao(String condicao) { this.condicao = condicao; }
+    PescadoCondicao(String condicao) {
+        this.condicao = condicao;
+    }
 
-    public String getCondicao() { return condicao; }
+    public String getCondicao() {
+        return condicao;
+    }
 }

@@ -19,20 +19,26 @@ public class ProdutoController {
     ProdutoService service;
 
     @GetMapping
-    public List<Produto> findAll() { return service.findAll(); }
+    public List<Produto> findAll() {
+        return service.findAll();
+    }
 
     @GetMapping("/{id}")
-    public Produto findById(@PathVariable UUID id) { return service.findById(id); }
+    public Produto findById(@PathVariable UUID id) {
+        return service.findById(id);
+    }
 
     @GetMapping("/tipo/{tipo}")
-    public List<Produto> findByTipo(@PathVariable("tipo") String produtoTipo) { return service.findByTipo(ProdutoTipo.valueOf(produtoTipo)); }
+    public List<Produto> findByTipo(@PathVariable("tipo") String produtoTipo) {
+        return service.findByTipo(ProdutoTipo.valueOf(produtoTipo));
+    }
 
     @PostMapping
     public ResponseEntity<?> insert(@RequestBody Produto produto) {
         try {
             service.insert(produto);
             return ResponseEntity.ok().build();
-        }catch (Exception ex){
+        } catch (Exception ex) {
             return ResponseEntity.badRequest().build();
         }
     }
@@ -42,7 +48,7 @@ public class ProdutoController {
         try {
             service.update(produto);
             return ResponseEntity.ok().build();
-        }catch (Exception ex){
+        } catch (Exception ex) {
             return ResponseEntity.badRequest().build();
         }
     }
@@ -53,7 +59,7 @@ public class ProdutoController {
         try {
             service.delete(id);
             return ResponseEntity.ok().build();
-        }catch (Exception ex){
+        } catch (Exception ex) {
             return ResponseEntity.badRequest().build();
         }
     }

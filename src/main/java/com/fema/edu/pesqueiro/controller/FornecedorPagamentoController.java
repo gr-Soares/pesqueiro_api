@@ -19,18 +19,22 @@ public class FornecedorPagamentoController {
     FornecedorPagamentoService service;
 
     @GetMapping
-    public List<FornecedorPagamento> findAll() { return service.findAll(); }
+    public List<FornecedorPagamento> findAll() {
+        return service.findAll();
+    }
 
     @GetMapping("/{id}")
-    public FornecedorPagamento findById(@PathVariable UUID id) {return service.findById(id); }
+    public FornecedorPagamento findById(@PathVariable UUID id) {
+        return service.findById(id);
+    }
 
     @PostMapping
     public ResponseEntity<?> insert(@RequestBody FornecedorPagamento fornecedorPagamento) {
         try {
             service.insert(fornecedorPagamento);
-            return  ResponseEntity.ok().build();
-        }catch (Exception ex){
-            return  ResponseEntity.badRequest().build();
+            return ResponseEntity.ok().build();
+        } catch (Exception ex) {
+            return ResponseEntity.badRequest().build();
         }
     }
 
@@ -38,9 +42,9 @@ public class FornecedorPagamentoController {
     public ResponseEntity<?> update(@RequestBody FornecedorPagamento fornecedorPagamento) {
         try {
             service.update(fornecedorPagamento);
-            return  ResponseEntity.ok().build();
-        }catch (Exception ex){
-            return  ResponseEntity.badRequest().build();
+            return ResponseEntity.ok().build();
+        } catch (Exception ex) {
+            return ResponseEntity.badRequest().build();
         }
     }
 
@@ -50,7 +54,7 @@ public class FornecedorPagamentoController {
         try {
             service.delete(id);
             return ResponseEntity.ok().build();
-        }catch (Exception ex){
+        } catch (Exception ex) {
             return ResponseEntity.badRequest().build();
         }
     }

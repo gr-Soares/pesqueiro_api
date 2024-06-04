@@ -16,33 +16,33 @@ public class ClienteService {
     @Autowired
     ClienteRepository repository;
 
-    public Cliente findById(UUID id){
+    public Cliente findById(UUID id) {
         Optional<Cliente> result = repository.findById(id);
         return result.orElse(null);
     }
 
-    public Cliente findByCpf(String cpf){
+    public Cliente findByCpf(String cpf) {
         Optional<Cliente> result = repository.findByCpf(cpf);
         return result.orElse(null);
     }
 
-    public List<Cliente> findAll(){
+    public List<Cliente> findAll() {
         return repository.findAll();
     }
 
-    public void insert(Cliente cliente){
+    public void insert(Cliente cliente) {
         cliente.setId(null);
         cliente.setClienteComanda(null);
         repository.save(cliente);
     }
 
-    public void update(Cliente cliente){
+    public void update(Cliente cliente) {
         repository.save(cliente);
     }
 
-    public void delete(UUID id){
+    public void delete(UUID id) {
         Cliente cliente = findById(id);
-        if(cliente != null){
+        if (cliente != null) {
             repository.delete(cliente);
         }
     }
@@ -51,13 +51,13 @@ public class ClienteService {
 
         Cliente cliente = findById(id);
 
-        if(cliente == null){
+        if (cliente == null) {
             throw new RuntimeException("Cliente inexistente!");
         }
 
         ClienteComanda comanda = cliente.getClienteComanda();
 
-        if(comanda == null){
+        if (comanda == null) {
             throw new RuntimeException("Comanda inexistente!");
         }
 

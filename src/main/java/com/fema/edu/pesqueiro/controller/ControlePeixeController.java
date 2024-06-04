@@ -18,44 +18,48 @@ public class ControlePeixeController {
     ControlePeixeService service;
 
     @GetMapping
-    public List<ControlePeixe> findAll() { return service.findAll(); }
+    public List<ControlePeixe> findAll() {
+        return service.findAll();
+    }
 
     @GetMapping("/{id}")
-    public ControlePeixe findById(@PathVariable UUID id) { return service.findById(id); }
+    public ControlePeixe findById(@PathVariable UUID id) {
+        return service.findById(id);
+    }
 
     @GetMapping("/tanque/{id}")
-    public List<ControlePeixe> findByTanque(@PathVariable("id") String id){
+    public List<ControlePeixe> findByTanque(@PathVariable("id") String id) {
         UUID uuid = UUID.fromString(id);
         return service.findByTanque(uuid);
     }
 
     @PostMapping
     public ResponseEntity<?> insert(@RequestBody ControlePeixe controlePeixe) {
-        try{
+        try {
             service.insert(controlePeixe);
             return ResponseEntity.ok().build();
-        }catch (Exception ex){
-            return  ResponseEntity.badRequest().build();
+        } catch (Exception ex) {
+            return ResponseEntity.badRequest().build();
         }
     }
 
     @PutMapping
     public ResponseEntity<?> update(@RequestBody ControlePeixe controlePeixe) {
-        try{
+        try {
             service.update(controlePeixe);
             return ResponseEntity.ok().build();
-        }catch (Exception ex){
-            return  ResponseEntity.badRequest().build();
+        } catch (Exception ex) {
+            return ResponseEntity.badRequest().build();
         }
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @DeleteMapping("/{id}")
     public ResponseEntity<?> delete(@PathVariable UUID id) {
-        try{
+        try {
             service.delete(id);
             return ResponseEntity.ok().build();
-        }catch (Exception ex){
+        } catch (Exception ex) {
             return ResponseEntity.badRequest().build();
         }
     }

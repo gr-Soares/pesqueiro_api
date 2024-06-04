@@ -15,23 +15,27 @@ public class ControlePeixeService {
     @Autowired
     ControlePeixeRepository repository;
 
-    public ControlePeixe findById(UUID id){
+    public ControlePeixe findById(UUID id) {
         Optional<ControlePeixe> result = repository.findById(id);
         return result.orElse(null);
     }
 
-    public List<ControlePeixe> findAll() { return repository.findAll(); }
+    public List<ControlePeixe> findAll() {
+        return repository.findAll();
+    }
 
-    public void insert(ControlePeixe controlePeixe){
+    public void insert(ControlePeixe controlePeixe) {
         controlePeixe.setId(null);
         repository.save(controlePeixe);
     }
 
-    public void update(ControlePeixe controlePeixe) { repository.save(controlePeixe); }
+    public void update(ControlePeixe controlePeixe) {
+        repository.save(controlePeixe);
+    }
 
-    public void delete(UUID id){
+    public void delete(UUID id) {
         ControlePeixe controlePeixe = findById(id);
-        if(controlePeixe != null){
+        if (controlePeixe != null) {
             repository.delete(controlePeixe);
         }
     }

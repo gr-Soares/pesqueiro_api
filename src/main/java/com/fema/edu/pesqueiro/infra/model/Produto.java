@@ -23,7 +23,7 @@ public class Produto {
     private String descricao;
     private Float valor_c;
     private ProdutoTipo tipo;
-    private Integer qtde;
+    private Float qtde;
     private Float valor_f;
 
     @ManyToOne

@@ -7,8 +7,12 @@ public enum FornecedorPagamentoStatus {
 
     private final String status;
 
-    FornecedorPagamentoStatus(String status) { this.status = status; }
+    FornecedorPagamentoStatus(String status) {
+        this.status = status;
+    }
 
-    public String getStatus() { return status; }
+    public String getStatus() {
+        return status;
+    }
 
 }

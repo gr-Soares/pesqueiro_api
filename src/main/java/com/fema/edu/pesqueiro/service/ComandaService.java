@@ -32,40 +32,40 @@ public class ComandaService {
     @Autowired
     ClienteService clienteService;
 
-    public ClienteComanda findbyComanda(int id){
+    public ClienteComanda findbyComanda(int id) {
         Optional<ClienteComanda> comanda = repository.findByComandaId(id);
         return comanda.orElse(null);
     }
 
-    public List<Comanda> findByStatus(ComandaStatus status){
+    public List<Comanda> findByStatus(ComandaStatus status) {
         return comandaRepo.findByStatus(status);
     }
 
-    public List<ClienteComanda> findAll(){
+    public List<ClienteComanda> findAll() {
         return repository.findAll();
     }
 
-    public Comanda open(LocalDateTime entrada, UUID cliente_id){
+    public Comanda open(LocalDateTime entrada, UUID cliente_id) {
         List<Comanda> disp = findByStatus(ComandaStatus.DISPONIVEL);
         Comanda cmn = new Comanda();
 
         Cliente cliente = clienteService.findById(cliente_id);
 
-        if(cliente == null){
+        if (cliente == null) {
             throw new RuntimeException("Cliente inexistente!");
         }
 
         ClienteComanda comandaAtual = cliente.getClienteComanda();
 
-        if(comandaAtual != null){
-            if(comandaAtual.getComanda().getStatus() == ComandaStatus.ABERTA){
+        if (comandaAtual != null) {
+            if (comandaAtual.getComanda().getStatus() == ComandaStatus.ABERTA) {
                 throw new RuntimeException("Cliente ja consta com comanda!");
             }
         }
 
-        if(disp.isEmpty()){
+        if (disp.isEmpty()) {
             cmn.setStatus(ComandaStatus.ABERTA);
-        }else{
+        } else {
             cmn = disp.get(0);
             cmn.setStatus(ComandaStatus.ABERTA);
         }
@@ -80,9 +80,9 @@ public class ComandaService {
         return cmn;
     }
 
-    public ClienteComanda updateGasto(float valor, UUID id){
+    public ClienteComanda updateGasto(float valor, UUID id) {
         Optional<ClienteComanda> result = repository.findById(id);
-        if(result.isPresent()){
+        if (result.isPresent()) {
             ClienteComanda comanda = result.get();
 
             float old = comanda.getGasto();
@@ -91,12 +91,12 @@ public class ComandaService {
             repository.save(comanda);
 
             return comanda;
-        }else{
+        } else {
             throw new RuntimeException("Comanda inexistente!");
         }
     }
 
-    public ClienteComanda updateGasto(float valor, ClienteComanda comanda){
+    public ClienteComanda updateGasto(float valor, ClienteComanda comanda) {
         float old = comanda.getGasto();
         comanda.setGasto(old + valor);
 
@@ -105,19 +105,19 @@ public class ComandaService {
         return comanda;
     }
 
-    public void close(LocalDateTime saida, HistComandaStatus status, String nota, UUID cliente_id, boolean release){
+    public void close(LocalDateTime saida, HistComandaStatus status, String nota, UUID cliente_id, boolean release) {
         Cliente cliente = clienteService.findById(cliente_id);
 
-        if(cliente == null){
+        if (cliente == null) {
             throw new RuntimeException("Cliente inexistente!");
         }
 
         ClienteComanda comanda = cliente.getClienteComanda();
 
-        if(comanda != null){
+        if (comanda != null) {
             Comanda cmn = comanda.getComanda();
 
-            if(release){
+            if (release) {
                 cmn.setStatus(ComandaStatus.DISPONIVEL);
 
                 cliente.setClienteComanda(null);
@@ -137,7 +137,7 @@ public class ComandaService {
 
                 repository.delete(comanda);
                 cmn.setStatus(ComandaStatus.DISPONIVEL);
-            }else{
+            } else {
                 cmn.setStatus(ComandaStatus.FECHADA);
                 comanda.setSaida(saida);
                 repository.save(comanda);
@@ -147,11 +147,11 @@ public class ComandaService {
         }
     }
 
-    public List<HistoricoComanda> findAllHistory(){
+    public List<HistoricoComanda> findAllHistory() {
         return historico.findAll();
     }
 
-    public List<HistoricoComanda> findHistoryByCpf(String cpf){
+    public List<HistoricoComanda> findHistoryByCpf(String cpf) {
         return historico.findByCpf(cpf);
     }
 }

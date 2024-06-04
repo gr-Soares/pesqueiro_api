@@ -16,28 +16,32 @@ public class TanqueService {
     @Autowired
     TanqueRepository repository;
 
-    public Tanque findById(UUID id){
+    public Tanque findById(UUID id) {
         Optional<Tanque> result = repository.findById(id);
         return result.orElse(null);
     }
 
-    public Tanque findByStatus(TanqueStatus status){
+    public Tanque findByStatus(TanqueStatus status) {
         Optional<Tanque> result = repository.findByStatus(status);
         return result.orElse(null);
     }
 
-    public List<Tanque> findAll() { return repository.findAll(); }
+    public List<Tanque> findAll() {
+        return repository.findAll();
+    }
 
-    public void insert(Tanque tanque){
+    public void insert(Tanque tanque) {
         tanque.setId(null);
         repository.save(tanque);
     }
 
-    public void update(Tanque tanque) { repository.save(tanque); }
+    public void update(Tanque tanque) {
+        repository.save(tanque);
+    }
 
-    public void delete(UUID id){
+    public void delete(UUID id) {
         Tanque tanque = findById(id);
-        if(tanque != null){
+        if (tanque != null) {
             repository.delete(tanque);
         }
     }

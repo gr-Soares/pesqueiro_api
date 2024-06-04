@@ -20,20 +20,26 @@ public class TanqueController {
     TanqueService service;
 
     @GetMapping
-    public List<Tanque> findAll() { return service.findAll(); }
+    public List<Tanque> findAll() {
+        return service.findAll();
+    }
 
     @GetMapping("/{id}")
-    public Tanque findById(@PathVariable UUID id) { return service.findById(id); }
+    public Tanque findById(@PathVariable UUID id) {
+        return service.findById(id);
+    }
 
     @GetMapping("/status/{status}")
-    public Tanque findByStatus(@PathVariable TanqueStatus status) { return service.findByStatus(status); }
+    public Tanque findByStatus(@PathVariable TanqueStatus status) {
+        return service.findByStatus(status);
+    }
 
     @PostMapping
     public ResponseEntity<?> insert(@RequestBody Tanque tanque) {
         try {
             service.insert(tanque);
             return ResponseEntity.ok().build();
-        }catch (Exception ex){
+        } catch (Exception ex) {
             return ResponseEntity.badRequest().build();
         }
     }
@@ -43,7 +49,7 @@ public class TanqueController {
         try {
             service.update(tanque);
             return ResponseEntity.ok().build();
-        }catch (Exception ex){
+        } catch (Exception ex) {
             return ResponseEntity.badRequest().build();
         }
     }
@@ -54,7 +60,7 @@ public class TanqueController {
         try {
             service.delete(id);
             return ResponseEntity.ok().build();
-        }catch (Exception ex){
+        } catch (Exception ex) {
             return ResponseEntity.badRequest().build();
         }
     }

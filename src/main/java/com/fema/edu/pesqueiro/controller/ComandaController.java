@@ -21,41 +21,41 @@ public class ComandaController {
     ComandaService service;
 
     @GetMapping("/status/{status}")
-    public List<Comanda> findByStatus(@PathVariable("status") ComandaStatus status){
+    public List<Comanda> findByStatus(@PathVariable("status") ComandaStatus status) {
         return service.findByStatus(status);
     }
 
     @GetMapping("/id/{id}")
-    public ClienteComanda findById(@PathVariable("id") int id){
+    public ClienteComanda findById(@PathVariable("id") int id) {
         return service.findbyComanda(id);
     }
 
     @PostMapping("/open/{id}")
-    public ResponseEntity<?> open(@PathVariable("id") String cliente_id){
-        try{
+    public ResponseEntity<?> open(@PathVariable("id") String cliente_id) {
+        try {
             LocalDateTime entrada = LocalDateTime.now();
             service.open(entrada, UUID.fromString(cliente_id));
 
             return ResponseEntity.ok().build();
-        }catch (Exception ex){
+        } catch (Exception ex) {
             return ResponseEntity.badRequest().build();
         }
     }
 
     @PostMapping("/close/{id}/{status}")
-    public ResponseEntity<?> close(@PathVariable("id") UUID cliente_id, @PathVariable("status") HistComandaStatus status){
-        try{
+    public ResponseEntity<?> close(@PathVariable("id") UUID cliente_id, @PathVariable("status") HistComandaStatus status) {
+        try {
             LocalDateTime saida = LocalDateTime.now();
             service.close(saida, status, "", cliente_id, true);
 
             return ResponseEntity.ok().build();
-        }catch (Exception ex){
+        } catch (Exception ex) {
             return ResponseEntity.badRequest().build();
         }
     }
 
     @PutMapping("/{id}/{value}")
-    public ClienteComanda updateValue(@PathVariable("id") UUID id, @PathVariable("value") float valor){
+    public ClienteComanda updateValue(@PathVariable("id") UUID id, @PathVariable("value") float valor) {
         return service.updateGasto(valor, id);
     }
 }

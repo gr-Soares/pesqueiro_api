@@ -18,20 +18,26 @@ public class PeixeController {
     PeixeService service;
 
     @GetMapping
-    public List<Peixe> findAll() { return service.findAll(); }
+    public List<Peixe> findAll() {
+        return service.findAll();
+    }
 
     @GetMapping("/{id}")
-    public Peixe findByID(@PathVariable UUID id) { return service.findById(id); }
+    public Peixe findByID(@PathVariable UUID id) {
+        return service.findById(id);
+    }
 
     @GetMapping("/especie/{especie}")
-    public Peixe findByEspecie(@PathVariable String especie) { return service.findByEspecie(especie); }
+    public Peixe findByEspecie(@PathVariable String especie) {
+        return service.findByEspecie(especie);
+    }
 
     @PostMapping
     public ResponseEntity<?> insert(@RequestBody Peixe peixe) {
         try {
             service.insert(peixe);
             return ResponseEntity.ok().build();
-        }catch (Exception ex){
+        } catch (Exception ex) {
             return ResponseEntity.badRequest().build();
         }
     }
@@ -41,7 +47,7 @@ public class PeixeController {
         try {
             service.update(peixe);
             return ResponseEntity.ok().build();
-        }catch (Exception ex){
+        } catch (Exception ex) {
             return ResponseEntity.badRequest().build();
         }
     }
@@ -52,7 +58,7 @@ public class PeixeController {
         try {
             service.delete(id);
             return ResponseEntity.ok().build();
-        }catch (Exception ex){
+        } catch (Exception ex) {
             return ResponseEntity.badRequest().build();
         }
     }

@@ -1,6 +1,5 @@
 package com.fema.edu.pesqueiro.infra.model;
 
-import com.fema.edu.pesqueiro.infra.enums.ComandaStatus;
 import com.fema.edu.pesqueiro.infra.enums.HistComandaStatus;
 import jakarta.persistence.*;
 import lombok.*;

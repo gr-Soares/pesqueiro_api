@@ -6,7 +6,6 @@ import com.fema.edu.pesqueiro.service.MarcaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,20 +19,26 @@ public class MarcaController {
     MarcaService service;
 
     @GetMapping
-    public List<Marca> findAll() { return service.findAll(); }
+    public List<Marca> findAll() {
+        return service.findAll();
+    }
 
     @GetMapping("/{id}")
-    public Marca findById(@PathVariable UUID id) { return service.findById(id); }
+    public Marca findById(@PathVariable UUID id) {
+        return service.findById(id);
+    }
 
     @GetMapping("/nome/{nome}")
-    public Marca findByNome(@PathVariable String nome) { return service.findByNome(nome); }
+    public Marca findByNome(@PathVariable String nome) {
+        return service.findByNome(nome);
+    }
 
     @PostMapping
     public ResponseEntity<?> insert(@RequestBody Marca marca) {
         try {
             service.insert(marca);
             return ResponseEntity.ok().build();
-        }catch (Exception ex){
+        } catch (Exception ex) {
             return ResponseEntity.badRequest().build();
         }
     }
@@ -43,18 +48,18 @@ public class MarcaController {
         try {
             service.update(marca);
             return ResponseEntity.ok().build();
-        }catch (Exception ex){
+        } catch (Exception ex) {
             return ResponseEntity.badRequest().build();
         }
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> delete(@PathVariable UUID id){
+    public ResponseEntity<?> delete(@PathVariable UUID id) {
         try {
             service.delete(id);
             return ResponseEntity.ok().build();
-        }catch (Exception ex){
+        } catch (Exception ex) {
             return ResponseEntity.badRequest().build();
         }
     }

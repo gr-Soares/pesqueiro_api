@@ -17,26 +17,30 @@ public class PeixeService {
 
     public Peixe findById(UUID id) {
         Optional<Peixe> result = repository.findById(id);
-        return  result.orElse(null);
+        return result.orElse(null);
     }
 
     public Peixe findByEspecie(String especie) {
         Optional<Peixe> result = repository.findByEspecie(especie);
-        return  result.orElse(null);
+        return result.orElse(null);
     }
 
-    public List<Peixe> findAll() { return repository.findAll(); }
+    public List<Peixe> findAll() {
+        return repository.findAll();
+    }
 
-    public void insert(Peixe peixe){
+    public void insert(Peixe peixe) {
         peixe.setId(null);
         repository.save(peixe);
     }
 
-    public void update(Peixe peixe) { repository.save(peixe); }
+    public void update(Peixe peixe) {
+        repository.save(peixe);
+    }
 
-    public void delete(UUID id){
+    public void delete(UUID id) {
         Peixe peixe = findById(id);
-        if(peixe != null){
+        if (peixe != null) {
             repository.delete(peixe);
         }
     }

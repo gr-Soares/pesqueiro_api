@@ -18,41 +18,47 @@ public class ItemCardapioController {
     ItemCardapioService service;
 
     @GetMapping
-    public List<ItemCardapio> findAll() { return service.findAll(); }
+    public List<ItemCardapio> findAll() {
+        return service.findAll();
+    }
 
     @GetMapping("/{id}")
-    public ItemCardapio findById(@PathVariable UUID id) { return service.findById(id); }
+    public ItemCardapio findById(@PathVariable UUID id) {
+        return service.findById(id);
+    }
 
     @GetMapping("/nome/{nome}")
-    public ItemCardapio findByNome(@PathVariable String nome) { return service.findByNome(nome); }
+    public ItemCardapio findByNome(@PathVariable String nome) {
+        return service.findByNome(nome);
+    }
 
     @PostMapping
     public ResponseEntity<?> insert(@RequestBody ItemCardapio itemCardapio) {
-        try{
+        try {
             service.insert(itemCardapio);
             return ResponseEntity.ok().build();
-        }catch (Exception ex){
-            return  ResponseEntity.badRequest().build();
+        } catch (Exception ex) {
+            return ResponseEntity.badRequest().build();
         }
     }
 
     @PutMapping
     public ResponseEntity<?> update(@RequestBody ItemCardapio itemCardapio) {
-        try{
+        try {
             service.update(itemCardapio);
             return ResponseEntity.ok().build();
-        }catch (Exception ex){
-            return  ResponseEntity.badRequest().build();
+        } catch (Exception ex) {
+            return ResponseEntity.badRequest().build();
         }
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @DeleteMapping("/{id}")
     public ResponseEntity<?> delete(@PathVariable UUID id) {
-        try{
+        try {
             service.delete(id);
             return ResponseEntity.ok().build();
-        }catch (Exception ex){
+        } catch (Exception ex) {
             return ResponseEntity.badRequest().build();
         }
     }

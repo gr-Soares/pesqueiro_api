@@ -19,38 +19,42 @@ public class ConsumoController {
     ConsumoService service;
 
     @GetMapping
-    public List<Consumo> findAll() { return service.findAll(); }
+    public List<Consumo> findAll() {
+        return service.findAll();
+    }
 
     @GetMapping("/{id}")
-    public Consumo findById(@PathVariable UUID id) { return service.findById(id); }
+    public Consumo findById(@PathVariable UUID id) {
+        return service.findById(id);
+    }
 
     @PostMapping
     public ResponseEntity<?> insert(@RequestBody ConsumoDTO consumo) {
-        try{
+        try {
             service.insert(consumo);
             return ResponseEntity.ok().build();
-        }catch (Exception ex){
-            return  ResponseEntity.badRequest().build();
+        } catch (Exception ex) {
+            return ResponseEntity.badRequest().build();
         }
     }
 
     @PutMapping
     public ResponseEntity<?> update(@RequestBody Consumo consumo) {
-        try{
+        try {
             service.update(consumo);
             return ResponseEntity.ok().build();
-        }catch (Exception ex){
-            return  ResponseEntity.badRequest().build();
+        } catch (Exception ex) {
+            return ResponseEntity.badRequest().build();
         }
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @DeleteMapping("/{id}")
     public ResponseEntity<?> delete(@PathVariable UUID id) {
-        try{
+        try {
             service.delete(id);
             return ResponseEntity.ok().build();
-        }catch (Exception ex){
+        } catch (Exception ex) {
             return ResponseEntity.badRequest().build();
         }
     }

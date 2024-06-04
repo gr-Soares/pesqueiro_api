@@ -1,6 +1,5 @@
 package com.fema.edu.pesqueiro.service;
 
-import com.fema.edu.pesqueiro.infra.model.Fornecedor;
 import com.fema.edu.pesqueiro.infra.model.Marca;
 import com.fema.edu.pesqueiro.infra.repository.MarcaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,27 +18,31 @@ public class MarcaService {
     @Autowired
     FornecedorService fornecedorService;
 
-    public Marca findById(UUID id){
+    public Marca findById(UUID id) {
         Optional<Marca> result = repository.findById(id);
-        return  result.orElse(null);
+        return result.orElse(null);
     }
 
-    public Marca findByNome(String nome){
+    public Marca findByNome(String nome) {
         Optional<Marca> result = repository.findByNome(nome);
         return result.orElse(null);
     }
 
-    public List<Marca> findAll() { return repository.findAll(); }
+    public List<Marca> findAll() {
+        return repository.findAll();
+    }
 
-    public void insert(Marca marca){
+    public void insert(Marca marca) {
         repository.save(marca);
     }
 
-    public void update(Marca marca) { repository.save(marca); }
+    public void update(Marca marca) {
+        repository.save(marca);
+    }
 
-    public void delete(UUID id){
+    public void delete(UUID id) {
         Marca marca = findById(id);
-        if(marca != null){
+        if (marca != null) {
             repository.delete(marca);
         }
     }

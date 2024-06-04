@@ -20,18 +20,22 @@ public class FornecedorPagamentoService {
         return result.orElse(null);
     }
 
-    public List<FornecedorPagamento> findAll() { return repository.findAll(); }
+    public List<FornecedorPagamento> findAll() {
+        return repository.findAll();
+    }
 
-    public void insert(FornecedorPagamento fornecedorPagamento){
+    public void insert(FornecedorPagamento fornecedorPagamento) {
         fornecedorPagamento.setId(null);
         repository.save(fornecedorPagamento);
     }
 
-    public void update(FornecedorPagamento fornecedorPagamento) { repository.save(fornecedorPagamento); }
+    public void update(FornecedorPagamento fornecedorPagamento) {
+        repository.save(fornecedorPagamento);
+    }
 
-    public void delete(UUID id){
+    public void delete(UUID id) {
         FornecedorPagamento fornecedorPagamento = findById(id);
-        if(fornecedorPagamento != null){
+        if (fornecedorPagamento != null) {
             repository.delete(fornecedorPagamento);
         }
     }

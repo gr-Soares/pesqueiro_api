@@ -3,7 +3,6 @@ package com.fema.edu.pesqueiro.infra.model;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.Set;
 import java.util.UUID;
 
 @Entity(name = "controle_peixe")

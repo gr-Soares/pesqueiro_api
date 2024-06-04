@@ -18,28 +18,32 @@ public class FornecedorService {
     @Autowired
     FornecedorRepository repository;
 
-    public Fornecedor findById(UUID id){
+    public Fornecedor findById(UUID id) {
         Optional<Fornecedor> result = repository.findById(id);
         return result.orElse(null);
     }
 
-    public Fornecedor findByCnpj(String cnpj){
+    public Fornecedor findByCnpj(String cnpj) {
         Optional<Fornecedor> result = repository.findByCnpj(cnpj);
         return result.orElse(null);
     }
 
-    public List<Fornecedor> findAll() { return repository.findAll(); }
+    public List<Fornecedor> findAll() {
+        return repository.findAll();
+    }
 
-    public void insert(Fornecedor fornecedor){
+    public void insert(Fornecedor fornecedor) {
         fornecedor.setId(null);
         repository.save(fornecedor);
     }
 
-    public void update(Fornecedor fornecedor) { repository.save(fornecedor); }
+    public void update(Fornecedor fornecedor) {
+        repository.save(fornecedor);
+    }
 
-    public void delete(UUID id){
+    public void delete(UUID id) {
         Fornecedor fornecedor = findById(id);
-        if(fornecedor != null){
+        if (fornecedor != null) {
             repository.delete(fornecedor);
         }
     }

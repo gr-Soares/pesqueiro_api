@@ -21,44 +21,52 @@ public class FornecedorController {
     FornecedorService service;
 
     @GetMapping
-    public List<Fornecedor> findAll() { return service.findAll(); }
+    public List<Fornecedor> findAll() {
+        return service.findAll();
+    }
 
     @GetMapping("/{id}")
-    public Fornecedor findById(@PathVariable UUID id) { return service.findById(id); }
+    public Fornecedor findById(@PathVariable UUID id) {
+        return service.findById(id);
+    }
 
     @GetMapping("/marcas/{id}")
-    public Set<Marca> findMarcaById(@PathVariable String id) { return service.findMarcaById(UUID.fromString(id)); }
+    public Set<Marca> findMarcaById(@PathVariable String id) {
+        return service.findMarcaById(UUID.fromString(id));
+    }
 
     @GetMapping("/cnpj/{cnpj}")
-    public Fornecedor findByCnpj(@PathVariable String cnpj) { return service.findByCnpj(cnpj); }
+    public Fornecedor findByCnpj(@PathVariable String cnpj) {
+        return service.findByCnpj(cnpj);
+    }
 
     @PostMapping
     public ResponseEntity<?> insert(@RequestBody Fornecedor fornecedor) {
-        try{
+        try {
             service.insert(fornecedor);
             return ResponseEntity.ok().build();
-        }catch (Exception ex){
-            return  ResponseEntity.badRequest().build();
+        } catch (Exception ex) {
+            return ResponseEntity.badRequest().build();
         }
     }
 
     @PutMapping
     public ResponseEntity<?> update(@RequestBody Fornecedor fornecedor) {
-        try{
+        try {
             service.update(fornecedor);
             return ResponseEntity.ok().build();
-        }catch (Exception ex){
-            return  ResponseEntity.badRequest().build();
+        } catch (Exception ex) {
+            return ResponseEntity.badRequest().build();
         }
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @DeleteMapping("/{id}")
     public ResponseEntity<?> delete(@PathVariable UUID id) {
-        try{
+        try {
             service.delete(id);
             return ResponseEntity.ok().build();
-        }catch (Exception ex){
+        } catch (Exception ex) {
             return ResponseEntity.badRequest().build();
         }
     }

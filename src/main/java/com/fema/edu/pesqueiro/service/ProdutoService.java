@@ -16,27 +16,31 @@ public class ProdutoService {
     @Autowired
     ProdutoRepository repository;
 
-    public Produto findById(UUID id){
+    public Produto findById(UUID id) {
         Optional<Produto> result = repository.findById(id);
-        return  result.orElse(null);
+        return result.orElse(null);
     }
 
-    public List<Produto> findByTipo(ProdutoTipo produtoTipo){
+    public List<Produto> findByTipo(ProdutoTipo produtoTipo) {
         return repository.findByTipo(produtoTipo);
     }
 
-    public List<Produto> findAll() { return  repository.findAll(); }
+    public List<Produto> findAll() {
+        return repository.findAll();
+    }
 
-    public void insert(Produto produto){
+    public void insert(Produto produto) {
         produto.setId(null);
         repository.save(produto);
     }
 
-    public void update(Produto produto) { repository.save(produto); }
+    public void update(Produto produto) {
+        repository.save(produto);
+    }
 
-    public void delete(UUID id){
+    public void delete(UUID id) {
         Produto produto = findById(id);
-        if(produto != null){
+        if (produto != null) {
             repository.delete(produto);
         }
     }

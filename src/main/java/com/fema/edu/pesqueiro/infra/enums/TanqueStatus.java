@@ -9,7 +9,11 @@ public enum TanqueStatus {
 
     private final String status;
 
-    TanqueStatus(String status) { this.status = status; }
+    TanqueStatus(String status) {
+        this.status = status;
+    }
 
-    public String getStatus() { return status; }
+    public String getStatus() {
+        return status;
+    }
 }

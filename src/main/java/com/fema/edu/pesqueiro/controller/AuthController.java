@@ -4,13 +4,10 @@ import com.fema.edu.pesqueiro.dto.LoginDTO;
 import com.fema.edu.pesqueiro.dto.TokenDTO;
 import com.fema.edu.pesqueiro.infra.model.User;
 import com.fema.edu.pesqueiro.security.TokenService;
-import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 

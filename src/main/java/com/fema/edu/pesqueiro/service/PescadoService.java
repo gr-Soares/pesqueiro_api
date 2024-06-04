@@ -20,18 +20,22 @@ public class PescadoService {
         return result.orElse(null);
     }
 
-    public List<Pescado> findAll() { return repository.findAll(); }
+    public List<Pescado> findAll() {
+        return repository.findAll();
+    }
 
     public void insert(Pescado pescado) {
         pescado.setId(null);
         repository.save(pescado);
     }
 
-    public void update(Pescado pescado) { repository.save(pescado); }
+    public void update(Pescado pescado) {
+        repository.save(pescado);
+    }
 
     public void delete(UUID id) {
         Pescado pescado = findById(id);
-        if(pescado != null){
+        if (pescado != null) {
             repository.delete(pescado);
         }
     }

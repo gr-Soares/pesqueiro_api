@@ -19,41 +19,47 @@ public class FranquiaController {
     FranquiaService service;
 
     @GetMapping
-    public List<Franquia> findAll() { return service.findAll(); }
+    public List<Franquia> findAll() {
+        return service.findAll();
+    }
 
     @GetMapping("/{id}")
-    public Franquia findById(@PathVariable UUID id) { return service.findById(id); }
+    public Franquia findById(@PathVariable UUID id) {
+        return service.findById(id);
+    }
 
     @GetMapping("/nome/{nome}")
-    public Franquia findByNome(@PathVariable String nome) { return service.findByNome(nome); }
+    public Franquia findByNome(@PathVariable String nome) {
+        return service.findByNome(nome);
+    }
 
     @PostMapping
     public ResponseEntity<?> insert(@RequestBody Franquia franquia) {
-        try{
+        try {
             service.insert(franquia);
             return ResponseEntity.ok().build();
-        }catch (Exception ex){
-            return  ResponseEntity.badRequest().build();
+        } catch (Exception ex) {
+            return ResponseEntity.badRequest().build();
         }
     }
 
     @PutMapping
     public ResponseEntity<?> update(@RequestBody Franquia franquia) {
-        try{
+        try {
             service.update(franquia);
             return ResponseEntity.ok().build();
-        }catch (Exception ex){
-            return  ResponseEntity.badRequest().build();
+        } catch (Exception ex) {
+            return ResponseEntity.badRequest().build();
         }
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @DeleteMapping("/{id}")
     public ResponseEntity<?> delete(@PathVariable UUID id) {
-        try{
+        try {
             service.delete(id);
             return ResponseEntity.ok().build();
-        }catch (Exception ex){
+        } catch (Exception ex) {
             return ResponseEntity.badRequest().build();
         }
     }

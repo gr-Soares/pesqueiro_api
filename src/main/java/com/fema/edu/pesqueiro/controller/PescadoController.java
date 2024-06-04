@@ -18,17 +18,21 @@ public class PescadoController {
     PescadoService service;
 
     @GetMapping
-    public List<Pescado> findAll() { return service.findAll(); }
+    public List<Pescado> findAll() {
+        return service.findAll();
+    }
 
     @GetMapping("/{id}")
-    public  Pescado findById(@PathVariable UUID id) { return service.findById(id); }
+    public Pescado findById(@PathVariable UUID id) {
+        return service.findById(id);
+    }
 
     @PostMapping
     public ResponseEntity<?> insert(@RequestBody Pescado pescado) {
         try {
             service.insert(pescado);
-            return  ResponseEntity.ok().build();
-        }catch (Exception ex){
+            return ResponseEntity.ok().build();
+        } catch (Exception ex) {
             return ResponseEntity.badRequest().build();
         }
     }
@@ -37,8 +41,8 @@ public class PescadoController {
     public ResponseEntity<?> update(@RequestBody Pescado pescado) {
         try {
             service.update(pescado);
-            return  ResponseEntity.ok().build();
-        }catch (Exception ex){
+            return ResponseEntity.ok().build();
+        } catch (Exception ex) {
             return ResponseEntity.badRequest().build();
         }
     }
@@ -48,8 +52,8 @@ public class PescadoController {
     public ResponseEntity<?> delete(@PathVariable UUID id) {
         try {
             service.delete(id);
-            return  ResponseEntity.ok().build();
-        }catch (Exception ex){
+            return ResponseEntity.ok().build();
+        } catch (Exception ex) {
             return ResponseEntity.badRequest().build();
         }
     }

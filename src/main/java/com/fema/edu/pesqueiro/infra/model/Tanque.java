@@ -1,11 +1,9 @@
 package com.fema.edu.pesqueiro.infra.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fema.edu.pesqueiro.infra.enums.TanqueStatus;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.Set;
 import java.util.UUID;
 
 @Entity(name = "tanque")

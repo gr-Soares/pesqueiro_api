@@ -7,6 +7,9 @@ import com.fema.edu.pesqueiro.infra.model.User;
 import com.fema.edu.pesqueiro.infra.repository.UserRepository;
 import com.fema.edu.pesqueiro.security.SecurityConfig;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,6 +25,20 @@ public class UserService {
     @Autowired
     UserRepository repository;
 
+
+    public User auth() {
+        SecurityContext context = SecurityContextHolder.getContext();
+        if (context != null) {
+            Authentication authentication = context.getAuthentication();
+            if (authentication != null) {
+                User user = repository.findByUsername(authentication.getName()).orElse(null);
+                if (user != null) {
+                    return user;
+                }
+            }
+        }
+        throw new RuntimeException("Erro ao encontrar usuario logado!");
+    }
 
     public void insert(UserInsertDTO newUser) {
         final String username = newUser.getUsername();

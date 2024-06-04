@@ -18,38 +18,42 @@ public class AvaliacaoController {
     AvaliacaoService service;
 
     @GetMapping
-    public List<Avaliacao> findAll() { return service.findAll(); }
+    public List<Avaliacao> findAll() {
+        return service.findAll();
+    }
 
     @GetMapping("/{id}")
-    public Avaliacao findById(@PathVariable UUID id) { return service.findById(id); }
+    public Avaliacao findById(@PathVariable UUID id) {
+        return service.findById(id);
+    }
 
     @PostMapping
     public ResponseEntity<?> insert(@RequestBody Avaliacao avaliacao) {
-        try{
+        try {
             service.insert(avaliacao);
             return ResponseEntity.ok().build();
-        }catch (Exception ex){
-            return  ResponseEntity.badRequest().build();
+        } catch (Exception ex) {
+            return ResponseEntity.badRequest().build();
         }
     }
 
     @PutMapping
     public ResponseEntity<?> update(@RequestBody Avaliacao avaliacao) {
-        try{
+        try {
             service.update(avaliacao);
             return ResponseEntity.ok().build();
-        }catch (Exception ex){
-            return  ResponseEntity.badRequest().build();
+        } catch (Exception ex) {
+            return ResponseEntity.badRequest().build();
         }
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @DeleteMapping("/{id}")
     public ResponseEntity<?> delete(@PathVariable UUID id) {
-        try{
+        try {
             service.delete(id);
             return ResponseEntity.ok().build();
-        }catch (Exception ex){
+        } catch (Exception ex) {
             return ResponseEntity.badRequest().build();
         }
     }

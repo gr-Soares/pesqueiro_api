@@ -27,6 +27,11 @@ public class UserController {
         return service.findAll();
     }
 
+    @GetMapping("/auth")
+    public User auth() {
+        return service.auth();
+    }
+
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/{uuid}")
     public User findById(@PathVariable("uuid") UUID uuid) {

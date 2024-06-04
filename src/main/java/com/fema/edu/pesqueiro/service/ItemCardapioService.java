@@ -15,28 +15,32 @@ public class ItemCardapioService {
     @Autowired
     ItemCardapioRepository repository;
 
-    public ItemCardapio findById(UUID id){
+    public ItemCardapio findById(UUID id) {
         Optional<ItemCardapio> result = repository.findById(id);
         return result.orElse(null);
     }
 
-    public ItemCardapio findByNome(String nome){
+    public ItemCardapio findByNome(String nome) {
         Optional<ItemCardapio> result = repository.findByNome(nome);
         return result.orElse(null);
     }
 
-    public List<ItemCardapio> findAll() { return repository.findAll(); }
+    public List<ItemCardapio> findAll() {
+        return repository.findAll();
+    }
 
-    public void insert(ItemCardapio itemCardapio){
+    public void insert(ItemCardapio itemCardapio) {
         itemCardapio.setId(null);
         repository.save(itemCardapio);
     }
 
-    public void update(ItemCardapio itemCardapio) { repository.save(itemCardapio); }
+    public void update(ItemCardapio itemCardapio) {
+        repository.save(itemCardapio);
+    }
 
-    public void delete(UUID id){
+    public void delete(UUID id) {
         ItemCardapio itemCardapio = findById(id);
-        if(itemCardapio != null){
+        if (itemCardapio != null) {
             repository.delete(itemCardapio);
         }
     }

@@ -15,28 +15,32 @@ public class FranquiaService {
     @Autowired
     FranquiaRepository repository;
 
-    public Franquia findById(UUID id){
+    public Franquia findById(UUID id) {
         Optional<Franquia> result = repository.findById(id);
         return result.orElse(null);
     }
 
-    public Franquia findByNome(String nome){
+    public Franquia findByNome(String nome) {
         Optional<Franquia> result = repository.findByNome(nome);
         return result.orElse(null);
     }
 
-    public List<Franquia> findAll() { return repository.findAll(); }
+    public List<Franquia> findAll() {
+        return repository.findAll();
+    }
 
-    public void insert(Franquia franquia){
+    public void insert(Franquia franquia) {
         franquia.setId(null);
         repository.save(franquia);
     }
 
-    public void update(Franquia franquia) { repository.save(franquia); }
+    public void update(Franquia franquia) {
+        repository.save(franquia);
+    }
 
-    public void delete(UUID id){
+    public void delete(UUID id) {
         Franquia franquia = findById(id);
-        if(franquia != null){
+        if (franquia != null) {
             repository.delete(franquia);
         }
     }

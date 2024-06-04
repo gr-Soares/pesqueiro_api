@@ -16,23 +16,27 @@ public class AvaliacaoService {
     @Autowired
     AvaliacaoRepository repository;
 
-    public Avaliacao findById(UUID id){
+    public Avaliacao findById(UUID id) {
         Optional<Avaliacao> result = repository.findById(id);
         return result.orElse(null);
     }
 
-    public List<Avaliacao> findAll() { return repository.findAll(); }
+    public List<Avaliacao> findAll() {
+        return repository.findAll();
+    }
 
-    public void insert(Avaliacao avaliacao){
+    public void insert(Avaliacao avaliacao) {
         avaliacao.setId(null);
         repository.save(avaliacao);
     }
 
-    public void update(Avaliacao avaliacao) { repository.save(avaliacao); }
+    public void update(Avaliacao avaliacao) {
+        repository.save(avaliacao);
+    }
 
-    public void delete(UUID id){
+    public void delete(UUID id) {
         Avaliacao avaliacao = findById(id);
-        if(avaliacao != null){
+        if (avaliacao != null) {
             repository.delete(avaliacao);
         }
     }

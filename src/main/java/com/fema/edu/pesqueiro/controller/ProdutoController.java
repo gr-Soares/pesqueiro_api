@@ -25,7 +25,7 @@ public class ProdutoController {
     public Produto findById(@PathVariable UUID id) { return service.findById(id); }
 
     @GetMapping("/tipo/{tipo}")
-    public Produto findByTipo(@PathVariable ProdutoTipo produtoTipo) { return service.findByTipo(produtoTipo); }
+    public List<Produto> findByTipo(@PathVariable("tipo") String produtoTipo) { return service.findByTipo(ProdutoTipo.valueOf(produtoTipo)); }
 
     @PostMapping
     public ResponseEntity<?> insert(@RequestBody Produto produto) {

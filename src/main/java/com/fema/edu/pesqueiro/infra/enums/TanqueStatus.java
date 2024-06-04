@@ -2,8 +2,10 @@ package com.fema.edu.pesqueiro.infra.enums;
 
 public enum TanqueStatus {
 
-    LIVRE("livre"),
-    CHEIO("cheio");
+    OK("ok"),
+    CHEIO("cheio"),
+    MANUTENCAO("manutenacao"),
+    PARADO("parado");
 
     private final String status;
 

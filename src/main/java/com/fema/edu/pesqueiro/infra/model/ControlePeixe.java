@@ -5,8 +5,8 @@ import lombok.*;
 
 import java.util.UUID;
 
-@Entity(name = "controlePeixe")
-@Table(name = "controlePeixe")
+@Entity(name = "controle_peixe")
+@Table(name = "controle_peixe")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -20,8 +20,8 @@ public class ControlePeixe {
 
     private Integer qtde;
 
-    @OneToOne
+    @ManyToOne
     private Peixe peixe;
-    @OneToOne
+    @ManyToOne
     private Tanque tanque;
 }

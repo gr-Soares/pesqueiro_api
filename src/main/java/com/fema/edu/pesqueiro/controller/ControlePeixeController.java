@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/controlePeixe")
+@RequestMapping("/controle_peixe")
 public class ControlePeixeController {
 
     @Autowired

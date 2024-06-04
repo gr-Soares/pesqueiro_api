@@ -1,9 +1,11 @@
 package com.fema.edu.pesqueiro.infra.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.Set;
 import java.util.UUID;
 
 @Entity(name = "peixe")
@@ -23,6 +25,10 @@ public class Peixe {
     private Float reproducao;
     private Float valor;
 
-    @OneToOne
+    @ManyToOne
     private Fornecedor fornecedor;
+
+    @JsonIgnore
+    @ManyToMany(fetch = FetchType.EAGER)
+    private Set<Tanque> tanques;
 }

@@ -1,9 +1,11 @@
 package com.fema.edu.pesqueiro.infra.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fema.edu.pesqueiro.infra.enums.TanqueStatus;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.Set;
 import java.util.UUID;
 
 @Entity(name = "tanque")
@@ -12,14 +14,15 @@ import java.util.UUID;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(of = "if")
+@EqualsAndHashCode(of = "id")
 public class Tanque {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    private Float capacidade;
+    private String descricao;
+    private Integer capacidade;
     private TanqueStatus status;
 
     /*@OneToOne

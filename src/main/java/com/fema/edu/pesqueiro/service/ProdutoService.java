@@ -21,9 +21,8 @@ public class ProdutoService {
         return  result.orElse(null);
     }
 
-    public Produto findByTipo(ProdutoTipo produtoTipo){
-        Optional<Produto> result = repository.findByTipo(produtoTipo);
-        return result.orElse(null);
+    public List<Produto> findByTipo(ProdutoTipo produtoTipo){
+        return repository.findByTipo(produtoTipo);
     }
 
     public List<Produto> findAll() { return  repository.findAll(); }

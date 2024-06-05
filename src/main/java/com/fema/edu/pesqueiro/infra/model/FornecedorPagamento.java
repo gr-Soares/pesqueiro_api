@@ -8,8 +8,8 @@ import lombok.*;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-@Entity(name = "fornecedorPagamento")
-@Table(name = "fornecedorPagamento")
+@Entity(name = "fornecedor_pagamento")
+@Table(name = "fornecedor_pagamento")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -28,6 +28,6 @@ public class FornecedorPagamento {
     private String obs;
     private String nota;
 
-    @OneToOne
+    @ManyToOne
     private Produto produto;
 }

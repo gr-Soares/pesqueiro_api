@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/fornecedorPagamento")
+@RequestMapping("/fornecedor_pagamento")
 public class FornecedorPagamentoController {
 
     @Autowired

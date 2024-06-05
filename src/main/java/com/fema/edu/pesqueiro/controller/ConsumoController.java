@@ -28,6 +28,11 @@ public class ConsumoController {
         return service.findById(id);
     }
 
+    @GetMapping("/comanda/{id}")
+    public List<Consumo> findByComanda(@PathVariable("id") Integer id){
+        return service.findByComanda(id);
+    }
+
     @PostMapping
     public ResponseEntity<?> insert(@RequestBody ConsumoDTO consumo) {
         try {

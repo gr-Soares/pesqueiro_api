@@ -70,4 +70,8 @@ public class ConsumoService {
             repository.delete(consumo);
         }
     }
+
+    public List<Consumo> findByComanda(Integer id) {
+        return repository.findByComandaId(id);
+    }
 }
